@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>考生信息</title>
+<link rel="icon" type="image/x-icon" href="/Public/static/images/favicon.ico" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<style>
+html,body{
+	height:100%;
+}
+table {
+    margin-top: 10%;
+    border-width: 3px;
+}
+caption {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+h5 {
+    color: gray;
+    cursor: pointer;
+}
+th {
+    font-family: Microsoft Yahei;
+    background-color: white;
+    border-width: 3px;
+}
+td {
+    font-family: Microsoft Yahei;
+    background-color: white;
+    font-style: italic;
+    font-size: large;
+}
+.flexer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+}
+.bg
+{
+    width: 100%;
+    height: 500px;
+    margin-top: 5%;
+    background: #6699cc;
+}
+h2 {
+    color: white;
+}
+</style>
+
+</head>
+<body style="background:white;margin:0;padding:0;">
+    <div class="bg">
+        <h2 align="center" style="padding-top: 5%;">本页信息由浙江省考试院提供</h2>
+        <!-- 开始编辑第3个表格 -->
+        <div class="flexer">
+            <table border="" style="border-collapse: collapse;" width="200px" height="100px" align="center">
+                <thead>
+                    <tr>
+                        <th>身份证号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center">
+                        <td id="sfz"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="" style="border-collapse: collapse;" width="200px" height="100px" align="center">
+                <thead>
+                    <tr>
+                        <th>历史等第</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center">
+                        <td>E</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="" style="border-collapse: collapse;" width="200px" height="100px" align="center">
+                <thead>
+                    <tr>
+                        <th>生物等第</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center">
+                        <td>E</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="" style="border-collapse: collapse;" width="200px" height="100px" align="center">
+                <thead>
+                    <tr>
+                        <th>化学等第</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center">
+                        <td>E</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="" style="border-collapse: collapse;" width="200px" height="100px" align="center">
+                <thead>
+                    <tr>
+                        <th>地理等第</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center">
+                        <td>E</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h5 align="center" id="downloader">下载成绩</h5>
+    <h5 align="center">版权所有：浙江省教育考试院</h5>
+    <h5 id="countdown" align="center">请在 999 秒后离开本页面</h5>
+</body>
+<script>
+
+        let maxtime = 998 * 1000; //2分钟，按毫秒计算，自己调整!   
+        const zero = (value) => {
+            return value > 9 ? value : `0` + value
+        }
+        // 获取cookie中的数据
+        document.getElementById('downloader').onclick = download;
+        const cookies = document.cookie.split(';');
+        let name = '';
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith('idname=')) {
+                name = cookie.substring(7);
+                break;
+            }
+        }
+        // 将数据渲染到页面上
+        document.getElementById('sfz').textContent = name;
+
+        function download() {
+            window.location.href = 'chengji.docx';
+        }
+
+        function CountDown() {
+                    if (maxtime >= 0) {
+                        seconds = Math.floor(maxtime / 1000);
+                        msg = "请在 " + zero(seconds) + " 秒后离开本页面";
+                        document.getElementById('countdown').innerHTML = msg;
+                        maxtime -= 1000
+                    } else{
+                        clearInterval(timer);
+                        window.close();
+                    }
+        }
+
+        timer = setInterval(CountDown, 1000);
+</script>
+</html>

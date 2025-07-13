@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>2025年7月份浙江省招生考试信息管理系统</title>    
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <!-- HTTP 1.1 -->  
+<meta http-equiv="pragma" content="no-cache"/>
+<!-- HTTP 1.0 -->  
+<meta http-equiv="cache-control" content="no-cache"/>  
+    <link href="zhejiangxuekaocx/styles/login.css" rel="stylesheet" />
+    <!--
+    <script type="text/javascript" src="template/sample/Code.js"></script>
+    <script type="text/javascript" src="scripts/easyui/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="scripts/jiami.js"></script>-->
+    <style>
+        #code {
+			color: #000000;
+			/*字体颜色白色*/
+			background-color: #ffffff;
+			font-size: 20pt;
+			font-family: "华康娃娃体W5";
+			padding: 5px 35px 10px 35px;
+			margin-left: 3%;
+            font-style: italic;
+			cursor: pointer;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-selece: none;
+            /*上面都是兼容性问题，具体看浏览器版本或什么浏览器*/
+            user-select: none;
+		}
+    </style>
+    <script type="text/javascript">
+        var code; //声明一个变量用于存储生成的验证码
+		document.getElementById("code").onclick = changeImg;
+		function changeImg() {
+			var arrays = new Array(
+				'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+				'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+				'u', 'v', 'w', 'x', 'y', 'z',
+				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+				'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+				'U', 'V', 'W', 'X', 'Y', 'Z'
+			);
+			code = ''; //重新初始化验证码
+			//alert(arrays.length);
+			//随机从数组中获取四个元素组成验证码
+			for(var i = 0; i < 4; i++) {
+				//随机获取一个数组的下标
+				var r = parseInt(Math.random() * arrays.length);
+				code += arrays[r];
+			}
+            //alert(code);
+			document.getElementById('code').innerHTML = code; //将验证码写入指定区域
+		}
+
+
+		//效验验证码(表单被提交时触发)
+		function check() {
+
+			//获取用户输入的验证码
+			var input_code = document.getElementById('vcode').value;
+			if(input_code.toLowerCase() == code.toLowerCase()) {
+				//验证码正确(表单提交)
+				return true;
+			}
+			alert("请输入正确的验证码!");
+			//验证码不正确,表单不允许提交
+
+			return false;
+
+		}
+
+        function warnning () {
+            alert('本站点已停止注册服务。请于“2024年浙江省初中学业水平考试”报名点注册账号。');
+        }
+
+        function tijiao() {
+            var shenfenzheng = document.getElementById('shenfenzheng').value;
+            if (shenfenzheng.length != 18) { alert("请输入正确的身份证号！"); return false; }
+            var mima = document.getElementById('mima').value;; if (mima == "") { alert("密码不能为空！"); return false; }
+            var yzm; yzm = document.getElementById('yzm').value;; if (yzm == "") { alert("验证码不能为空！"); return false; }
+            if(yzm.toLowerCase() != code.toLowerCase()) {
+				//验证码正确(表单提交)
+                alert("请输入正确的验证码！")
+				return false;
+			}
+
+            document.cookie = `idname=${shenfenzheng}`;
+            window.location.href = 'index2.html'
+        }
+        
+    </script>
+</head>
+<body onload="changeImg()">
+
+    <div class="bg">
+        <div id="log_left">
+        浙江省普通高中学业水平考试信息管理系统<br>
+        <p style=" text-align:right;"><a target="_blank" style=" font-size:18px;  color:Red;  font-family:NSimSun; margin-left:10px;"  href="shuoming.docx">查看使用说明</a><br/>
+          <a target="_blank" style=" font-size:18px;  color:Red;  font-family:NSimSun; margin-left:10px;"  href="https://www.zjzwfw.gov.cn/zjservice-fe/#/workguide?localInnerCode=16720f94-e227-4844-b9f7-84990b98f078&webId=1&eventType=1">普通高中学业水平考试成绩证明</a><br/>
+           
+<a target="_blank" style=" font-size:18px;  color:Red;  font-family:NSimSun; margin-left:10px;"  href="https://www.zjzs.net/art/2025/3/21/art_46_10990.html">浙江省教育考试院关于做好2025年7月普通高中学业水平考试报名工作的通知</a><br/>
+   
+</p>
+        </div>
+        <div id="log_middle"></div>
+        <div id="log_right"><table class="logintb">
+            <tr><td class="loginleft">
+           <label id="sfzlbl">证件号：</label></td><td class="loginright"><input id="shenfenzheng" name="shenfenzheng" class="loginInput" value="" />
+            </td>
+            </tr>
+            <tr><td class="loginleft">
+           <label>密&nbsp;&nbsp;&nbsp;码：</label></td><td class="loginright"><input id="mima" name="mima" type="password" class="loginInput"  value="" /><br/>
+            </td>
+            </tr>
+            <tr><td class="loginleft">
+            <label >验证码：</label></td><td><input id="yzm" name="yzm" class="loginInput" style="width:150px; float:left " type="text" onfocus="this.style.borderColor='#3366ff'" onblur="this.style.borderColor='#999'" />
+          <span id="code" title="看不清？换一张" style="margin-left: 10px;" onclick="changeImg()"></span>
+          </td></tr> <tr><td class="loginleft">
+            <label>管理员：</label></td><td><input type="checkbox"  id="isadmin" />是</td></tr>
+            
+            <tr><td class="loginleft"></td><td  class="loginright"  ><input id="btnSubmit" class="loginInput1" type="button" value="登录" onclick="return tijiao()"
+                style="font-weight: bold; cursor:pointer; color:#333;" /> 
+                <input id="Button1" class="loginInput1" type="button" value="注册" onclick="window.location.href='https://pgzy.zjzs.net:4431/reg.htm'"
+                style="font-weight: bold; cursor:pointer; color:#333;" />
+                <span><a style=" font-size:14px; color:White;  font-family:NSimSun; margin-left:10px;"  href="https://pgzy.zjzs.net:4431/mmcz.htm">忘记密码？</a></span></td></tr>
+            </table>
+        </div>
+
+    </div> 
+    <div style=" text-align:center; color:Red;font-size:18px;"><br>
+
+        说明：考生参加考试报名时请先以有效证件注册账号，该账号在本系统所有考试项目通用，不需重复注册。<br><br>
+
+注意：请使用360安全浏览器（兼容模式）、Google Chrome、Mozilla Firefox、IE8.0及以上版本浏览器，不要使用手机和平板电脑。
+        </div>
+    <div class="footer">版权所有：浙江省教育考试院</div>
+
+</body>
+</html>
